@@ -4,7 +4,16 @@
 
 int main(){
 
-  sleep(10);
+  FILE *f = fopen("file.txt", "w");
+  if(f == NULL){
+    exit(1);
+  }
+
+  sleep(2);
+  fprintf(f, "print 123\n");
+
+  fclose(f);
+
   exit(0);
 
 }

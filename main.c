@@ -49,12 +49,15 @@ void main(int argc, char** argv){
   
       if(pid = Fork() == 0){
 	// change from argv to flags?
+	execve(filename, argv, NULL);
 	execvp(filename, argv);
+
       }else{
-	while(wait(&status) == -1){
+	/*if(wait(&status) == -1){
 	  unix_error("Wait error\n");
 	  exit(1);
-        }
+        }*/
+	waitpid(pid, &status, 0);
       }
 
     }else{

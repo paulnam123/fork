@@ -6,7 +6,7 @@
 #include <sys/wait.h>
 #include <errno.h>
 #include <signal.h>
-#include "main.h"
+#include "part1.h"
 
 int main(int argc, char** argv){
 
@@ -102,7 +102,7 @@ pid_t Fork(void){
   pid_t pid;
 
   if((pid = fork()) < 0){
-    unix_error("Fork error");
+    unix_error("Fork error\n");
   }
 
   return pid;

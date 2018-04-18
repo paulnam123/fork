@@ -7,5 +7,14 @@
 //void cse320_fclose();
 //void cse320_clean();
 
+struct addr_in_use{
+  void* addr;
+  int ref_count;
+};
+
+struct files_in_use{
+  char *filename;
+  int ref_count;
+};
 
 #endif

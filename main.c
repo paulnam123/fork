@@ -30,6 +30,7 @@ int main(int argc, char** argv){
 
     // if exit command, exit the program
     if(!strcmp(input, "exit\n")){
+      free(list);
       exit(0);
     }else if(!strcmp(input, "help\n")){
       // print text description
@@ -83,12 +84,13 @@ int main(int argc, char** argv){
         }*/
 	waitpid(pid, &status, 0);
       }
-      
+      // maybe wait for errno?
       sigprocmask(SIG_SETMASK, &prev, NULL);
 
     }else{
       printf("The command or program does not exist. Please try again.\n");
     }
+
     free(list);
 
   }

@@ -13,15 +13,15 @@ void main(int argc, char** argv){
   printf("Please type help to see the list of commands.\n");
 
 
-    char input[50];
-    char *list[20];
+  while(1){
+
+    char input[255];
+    //char *list[100];
+    char **list = malloc(100 * sizeof(char));
     char *filename = NULL;
 
     char *token = NULL;
     int count = 0;
-
-  while(1){
-
 
     printf("Ask user what to do\n");
 
@@ -37,7 +37,7 @@ void main(int argc, char** argv){
       continue;
     }
 
-    token = strtok(input, " ");
+    token = strtok(input, " \n");
     char *command = token;
 
     token = strtok(NULL, " \n");
@@ -45,6 +45,9 @@ void main(int argc, char** argv){
       list[count] = token;
       token = strtok(NULL, " \n");
       count++;
+    }
+    if(count <= 1){
+      list[1] = 0x0;
     }
   
     filename = list[0];
@@ -57,9 +60,13 @@ void main(int argc, char** argv){
       if(pid = Fork() == 0){
 	// change from argv to flags?
 	if(execve(filename, list, NULL) == -1){
-	  execvp(filename, list);
-	  printf("Application does not exist.\n");
+	  if(execvp(filename, list) == -1){
+	    printf("Application does not exist.\n");
+	    free(list);
+	    exit(-1);
+	  }
 	}
+
       }else{
 	/*if(wait(&status) == -1){
 	  unix_error("Wait error\n");
@@ -71,7 +78,7 @@ void main(int argc, char** argv){
     }else{
       printf("The command or program does not exist. Please try again.\n");
     }
- 
+    free(list);
 
   }
 

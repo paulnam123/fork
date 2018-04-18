@@ -8,7 +8,7 @@
 #include <signal.h>
 #include "main.h"
 
-void main(int argc, char** argv){
+int main(int argc, char** argv){
 
   printf("Please type help to see the list of commands.\n");
 
@@ -53,11 +53,20 @@ void main(int argc, char** argv){
     filename = list[0];
 
     if(!strcmp(command, "run")){
+      
+      // block signals when app running
+      sigset_t mask, prev;
+
+      sigemptyset(&mask);
+      sigaddset(&mask, SIGINT);
+      sigaddset(&mask, SIGKILL);
+
+      sigprocmask(SIG_BLOCK, &mask, &prev);
 
       pid_t pid;
       int status;
   
-      if(pid = Fork() == 0){
+      if((pid = Fork()) == 0){
 	// change from argv to flags?
 	if(execve(filename, list, NULL) == -1){
 	  if(execvp(filename, list) == -1){
@@ -74,6 +83,8 @@ void main(int argc, char** argv){
         }*/
 	waitpid(pid, &status, 0);
       }
+      
+      sigprocmask(SIG_SETMASK, &prev, NULL);
 
     }else{
       printf("The command or program does not exist. Please try again.\n");

@@ -5,18 +5,23 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <errno.h>
+#include <signal.h>
 #include "main.h"
 
 void main(int argc, char** argv){
-  
-  char input[50];
-  char *list[20];
-  char *filename = NULL;
 
-  char *token = NULL;
-  int count = 0;
+  printf("Please type help to see the list of commands.\n");
+
+
+    char input[50];
+    char *list[20];
+    char *filename = NULL;
+
+    char *token = NULL;
+    int count = 0;
 
   while(1){
+
 
     printf("Ask user what to do\n");
 
@@ -29,18 +34,20 @@ void main(int argc, char** argv){
     }else if(!strcmp(input, "help\n")){
       // print text description
       // ***************************
+      continue;
     }
 
     token = strtok(input, " ");
+    char *command = token;
 
+    token = strtok(NULL, " \n");
     while(token != NULL){
       list[count] = token;
       token = strtok(NULL, " \n");
       count++;
     }
   
-    char *command = list[0];
-    char *filename = list[1];
+    filename = list[0];
 
     if(!strcmp(command, "run")){
 
@@ -49,9 +56,10 @@ void main(int argc, char** argv){
   
       if(pid = Fork() == 0){
 	// change from argv to flags?
-	execve(filename, argv, NULL);
-	execvp(filename, argv);
-
+	if(execve(filename, list, NULL) == -1){
+	  execvp(filename, list);
+	  printf("Application does not exist.\n");
+	}
       }else{
 	/*if(wait(&status) == -1){
 	  unix_error("Wait error\n");
@@ -64,7 +72,6 @@ void main(int argc, char** argv){
       printf("The command or program does not exist. Please try again.\n");
     }
  
-    // check
 
   }
 

@@ -17,4 +17,7 @@ struct files_in_use{
   int ref_count;
 };
 
+extern struct addr_in_use addr_struct;
+extern struct files_in_use files_struct;
+
 #endif

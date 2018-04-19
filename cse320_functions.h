@@ -20,4 +20,9 @@ typedef struct files_in_use{
 addr_in_use addr_struct[25];
 files_in_use files_struct[25];
 
+sem_t mutex;
+
+extern int addr_count;
+extern int files_count;
+
 #endif

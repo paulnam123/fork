@@ -6,18 +6,14 @@
 #include "main.h"
 
 int i = 0;
-//sem_t mutex;
+extern sem_t mutex;
+int addr_count = 0;
+int files_count = 0;
 extern addr_in_use addr_struct[25];
 
 int main(int argc, char** argv){
 
-  //addr_in_use *temp = addr_struct;
-  //addr_struct[0].ref_count = 5;
-  //int x = addr_struct[0].ref_count;
-  //sem_init(&mutex, 0, 1);
-  //int y = addr_struct[1].ref_count;
-
-  //printf("%d\n", y);
+  sem_init(&mutex, 0, 1);
 
   pthread_t tid1, tid2;
 
@@ -27,17 +23,17 @@ int main(int argc, char** argv){
   pthread_join(tid1, NULL);
   pthread_join(tid2, NULL);
 
-  //printf("%i\n", i);
 
+  printf("%p\n", addr_struct[0].addr);
+  printf("%p\n", addr_struct[1].addr);
+  printf("%p\n", addr_struct[2].addr);
   exit(0);
 }
 
 void *my_thread(void *vargp){
-  int j;
-  for(j = 0;j < 100000;j++){
-    //sem_wait(&mutex);
-    i++;
-    //sem_post(&mutex);
-  }
+    void *ptr = cse320_malloc(50);
+    //printf("%p\n", ptr);
+
+    free(ptr);
   return NULL;
 }

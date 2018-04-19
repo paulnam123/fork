@@ -6,9 +6,9 @@ void* cse320_malloc(size_t size){
 
   void* retval = malloc(size);
 
-  addr_struct
+  //addr_struct
 
-  printf()
+  //printf()
 
   return retval;
 

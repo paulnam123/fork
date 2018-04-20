@@ -34,7 +34,8 @@ int main(int argc, char** argv){
 
   for(i = 0;i < 25;i++){
     
-    free(addr_struct[i].addr);
+    cse320_free(addr_struct[i].addr);
+    cse320_free(addr_struct[i].addr);
   }
 
   //printf("%d\n", addr_count);

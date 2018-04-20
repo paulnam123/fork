@@ -1,6 +1,9 @@
 #ifndef FUNCTION_H
 #define FUNCTION_H
 
+sem_t mutex;
+
+void cse320_init();
 void* cse320_malloc(size_t size);
 //void cse320_free();
 //void cse320_open();
@@ -19,8 +22,6 @@ typedef struct files_in_use{
 
 addr_in_use addr_struct[25];
 files_in_use files_struct[25];
-
-sem_t mutex;
 
 extern int addr_count;
 extern int files_count;

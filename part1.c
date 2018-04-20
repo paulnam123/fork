@@ -10,7 +10,7 @@
 
 int main(int argc, char** argv){
 
-  printf("Please type help to see the list of commands.\n");
+  printf("Please type help to see how to use this program\n");
   
   signal(SIGINT, sigint_handler);
 
@@ -24,7 +24,7 @@ int main(int argc, char** argv){
     char *token = NULL;
     int count = 0;
 
-    printf("Ask user what to do\n");
+    printf("What would you like to do?\n");
 
     //input from user
     fgets(input, 50, stdin);
@@ -36,6 +36,10 @@ int main(int argc, char** argv){
     }else if(!strcmp(input, "help\n")){
       // print text description
       // ***************************
+      printf("Commands:\n");
+      printf("run X (-flag) : Runs a program with the name X, with option of adding flags.\n");
+      printf("exit : Exits this program.\n");
+      printf("help : Opens up the help text description.\n");
       continue;
     }
 

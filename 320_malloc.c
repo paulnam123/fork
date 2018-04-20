@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -10,7 +9,7 @@
 
 void* cse320_malloc(size_t size){
   
-  char buf[25] = "Not enough memory.\n";
+  char buf[25] = "Not enough memory\n";
 
   void* retval = malloc(size);
   sem_wait(&mutex);

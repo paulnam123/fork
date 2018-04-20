@@ -24,16 +24,15 @@ int main(int argc, char** argv){
   pthread_join(tid2, NULL);
 
 
-  printf("%p\n", addr_struct[0].addr);
-  printf("%p\n", addr_struct[1].addr);
-  printf("%p\n", addr_struct[2].addr);
+  //printf("%p\n", addr_struct[0].addr);
+  //printf("%p\n", addr_struct[1].addr);
   exit(0);
 }
 
 void *my_thread(void *vargp){
     void *ptr = cse320_malloc(50);
-    //printf("%p\n", ptr);
+    printf("%p\n", ptr);
 
-    free(ptr);
+    //free(ptr);
   return NULL;
 }

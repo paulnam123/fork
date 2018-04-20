@@ -5,7 +5,7 @@ sem_t mutex;
 
 void cse320_init();
 void* cse320_malloc(size_t size);
-//void cse320_free();
+void cse320_free(void *ptr);
 //void cse320_open();
 //void cse320_fclose();
 //void cse320_clean();

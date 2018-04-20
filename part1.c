@@ -11,7 +11,8 @@
 int main(int argc, char** argv){
 
   printf("Please type help to see the list of commands.\n");
-
+  
+  signal(SIGINT, sigint_handler);
 
   while(1){
 
@@ -112,4 +113,8 @@ pid_t Fork(void){
 void unix_error(char *msg){
   fprintf(stderr, "%s: %s\n", msg, strerror(errno));
   exit(0);
+}
+
+void sigint_handler(int sig){
+  return;
 }

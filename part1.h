@@ -5,4 +5,6 @@ pid_t Fork(void);
 
 void unix_error(char *msg);
 
+void sigint_handler(int sig);
+
 #endif

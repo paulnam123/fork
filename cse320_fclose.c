@@ -19,11 +19,11 @@ int cse320_fclose(FILE* stream){
   int j, found = 0;
   for(j = 0;j < files_count;j++){
 
-    if(fileno(stream) == fileno(files_struct[j].fp)){
+    if(stream == files_struct[j].fp){
 
       if(files_struct[j].ref_count > 0){
 
-        //retval = fclose(stream);
+        retval = fclose(stream);
         files_struct[j].ref_count--;
 
 	found = 1;

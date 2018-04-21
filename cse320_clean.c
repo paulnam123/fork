@@ -8,43 +8,26 @@
 #include "cse320_functions.h"
 
 void cse320_clean(){
-  
-  char buf[30] = "Free: Illegal Address\n";
-  char buf2[30] = "Free: Double Free Attempt\n";
-
+ 
+  int j;
+ 
   sem_wait(&mutex);
-  
-  int j, found = 0;
 
+  // free all malloc 
   for(j = 0;j < addr_count;j++){
 
-    if(addr_struct[j].addr == ptr){
-      if(addr_struct[j].ref_count == 0){
-        errno = EADDRNOTAVAIL;
-	write(STDOUT_FILENO, buf2, 30);	
-
-	sem_post(&mutex);
-
-        exit(-1);
-      }else if(addr_struct[j].ref_count > 0){
-	addr_struct[j].ref_count--;
-        free(ptr);
-        found = 1;
-        break;
-      }
-    }
+    free(addr_struct[j].addr);
 
   }
 
-  if(!found){
-    errno = EFAULT;
-    write(STDOUT_FILENO, buf, 30);
-    
-    sem_post(&mutex);
+  // fclose all files 
+  for(j = 0;j < files_count;j++){
 
-    exit(-1);
+    fclose(files_struct[j].fp);
+
   }
 
   sem_post(&mutex);
 
   return;
+}

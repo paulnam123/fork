@@ -30,7 +30,7 @@ FILE* cse320_fopen(char *filename, char *mode){
   }else{
 
     //check if same file exists, if so return it
-    int j, used;
+    int j, used = 0;
     for(j = 0;j < files_count;j++){
 
       if(!strcmp(filename, files_struct[j].filename)){

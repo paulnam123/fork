@@ -5,13 +5,18 @@
 
 int main(){
 
+
   FILE *f = fopen("file.txt", "w");
   if(f == NULL){
     exit(1);
   }
-
-  sleep(2);
-  fprintf(f, "print 123\n");
+  FILE *f2 = fopen("file.txt", "w");
+  if(f == NULL){
+    exit(1);
+  }
+  
+  int fd1 = fileno(f);
+  int fd2 = fileno(f2);
 
   fclose(f);
 

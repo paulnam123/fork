@@ -7,10 +7,10 @@
 #include <pthread.h>
 #include "cse320_functions.h"
 
-FILE* cse320_fopen(const char *filename, const char *mode){
+FILE* cse320_fopen(char *filename, char *mode){
   
   char buf[30] = "Too many opened files\n";
-  char buf[25] = "File does not exist\n";
+  char buf2[25] = "File does not exist\n";
 
   sem_wait(&mutex);
   //addr_count = 25;  
@@ -30,21 +30,29 @@ FILE* cse320_fopen(const char *filename, const char *mode){
   }else{
 
     //check if same file exists, if so return it
-    int j;
+    int j, used;
     for(j = 0;j < files_count;j++){
 
-	
+      if(!strcmp(filename, files_struct[j].filename)){
+	fp = files_struct[j].fp;
+	files_struct[j].ref_count++;
+	used = 1;
+      }
+
 
     }
-
-    /*files_struct[addr_count].filename = filename; 
-    files_struct[addr_count].ref_count++;
-    files_struct[addr_count].fp = fp;
-    files_count++;
-
-    sem_post(&mutex);*/
     
+    if(!used){
+      
+      files_struct[files_count].filename = filename; 
+      files_struct[files_count].ref_count++;
+      files_struct[files_count].fp = fp;
+      files_count++;
+    }
+
   }  
+  
+  sem_post(&mutex);
 
   return fp;
 }

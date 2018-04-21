@@ -9,7 +9,7 @@
 
 int cse320_fclose(FILE* stream){
   
-  int retval;
+  int retval = 0;
 
   char buf[30] = "Close: Illegal filename\n";
   char buf2[30] = "Close: Ref count is zero\n";
@@ -23,7 +23,7 @@ int cse320_fclose(FILE* stream){
 
       if(files_struct[j].ref_count > 0){
 
-        fclose(stream);
+        //retval = fclose(stream);
         files_struct[j].ref_count--;
 
 	found = 1;
@@ -35,7 +35,7 @@ int cse320_fclose(FILE* stream){
 
 	sem_post(&mutex);
 
-	exit(-1)
+	exit(-1);
       }
     }
   }

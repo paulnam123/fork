@@ -7,7 +7,7 @@
 #include <pthread.h>
 #include "cse320_functions.h"
 
-void cse320_free(void *ptr){
+void cse320_clean(){
   
   char buf[30] = "Free: Illegal Address\n";
   char buf2[30] = "Free: Double Free Attempt\n";
@@ -28,7 +28,7 @@ void cse320_free(void *ptr){
         exit(-1);
       }else if(addr_struct[j].ref_count > 0){
 	addr_struct[j].ref_count--;
-        //free(ptr);
+        free(ptr);
         found = 1;
         break;
       }
@@ -48,5 +48,3 @@ void cse320_free(void *ptr){
   sem_post(&mutex);
 
   return;
-
-}

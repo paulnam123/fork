@@ -32,13 +32,13 @@ int main(int argc, char** argv){
 
   }
   
-  printf("%s\n", files_struct[0].filename);
+  //printf("%s\n", files_struct[0].filename);
 
   //int fn;
-  //for(i = 0;i < max;i++){
-
+  for(i = 0;i < max;i++){
+    cse320_fclose(files_struct[i].fp);
     //cse320_free(addr_struct[i].addr);
-  //}
+  }
 
   //printf("%d\n", addr_count);
   //printf("%d\n", addr_struct[1].ref_count);
@@ -51,11 +51,14 @@ void *my_thread(void *vargp){
 
     FILE *ptr = NULL;
 
-    if(files_count == 1){
+    /*if(files_count == 1){
       ptr = cse320_fopen("file2.txt", "r");
     }else{
       ptr = cse320_fopen("file.txt", "r");
-    }
+    }*/
+
+    ptr = cse320_fopen("file.txt", "r");
+
     printf("%p\n", ptr);
     
   return NULL;

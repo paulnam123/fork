@@ -8,7 +8,7 @@ void* cse320_malloc(size_t size);
 void cse320_free(void *ptr);
 FILE* cse320_fopen(char *filename, char *mode);
 int cse320_fclose(FILE* stream);
-//void cse320_clean();
+void cse320_clean();
 
 typedef struct addr_in_use{
   void* addr;

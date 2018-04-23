@@ -8,11 +8,11 @@ To run the application, use the command "make part1" then "./part1." You can use
 
 Part 2:
 
-In your Makefile, compile with your main application file, cse320_malloc.c, cse320_free.c, cse320_fopen.c, cse320_fclose.c, cse320_clean.c, and cse320_init.c.
+In your Makefile, compile with your main application file, cse320_malloc.c, cse320_free.c, cse320_fopen.c, cse320_fclose.c, cse320_clean.c, cse320_init.c, and -lpthread.
 
 In your main application, make sure to #include <semaphore.h>. 
 
-Before running the part 2 functions, call cse320_init() in your main application, which initializes the semaphore for thread testing.
+Before calling the part 2 functions, call cse320_init() in your main application, which initializes the semaphore for thread testing.
 
 
 Part 3:

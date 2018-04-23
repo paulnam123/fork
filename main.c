@@ -27,17 +27,19 @@ int main(int argc, char** argv){
 
   cse320_clean();*/
 
-  cse320_settimer(5);
+  cse320_settimer(2);
 
   pid_t pid;
   
-  //int i;
-  //for(i = 0;i < 5;i++){
+  int i;
+  for(i = 0;i < 3;i++){
     if((pid = cse320_fork()) == 0){
       printf("child function\n");
     }else{
       printf("parent function\n");
     }
+
+
     /*if((pid = cse320_fork()) == 0){
       printf("child function\n");
     }else{
@@ -46,7 +48,7 @@ int main(int argc, char** argv){
 
 
     
-  //}
+  }
   exit(0);
 }
 

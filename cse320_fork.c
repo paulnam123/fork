@@ -13,6 +13,8 @@
 
 pid_t cse320_fork(){
 
+  cse320_settimer(time);
+
   alarm_received = 0;
 
   pid_t pid;

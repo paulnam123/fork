@@ -3,8 +3,6 @@
 #include <pthread.h>
 #include <semaphore.h>
 #include <signal.h>
-#include <sys/time.h>
-#include <unistd.h>
 #include "main.h"
 #include "cse320_functions.h"
 
@@ -40,11 +38,11 @@ int main(int argc, char** argv){
     }else{
       printf("parent function\n");
     }
-    if((pid = cse320_fork()) == 0){
+    /*if((pid = cse320_fork()) == 0){
       printf("child function\n");
     }else{
       printf("parent function\n");
-    }
+    }*/
 
 
     

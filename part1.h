@@ -1,5 +1,5 @@
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef PART_1_H
+#define PART_1_H
 
 pid_t Fork(void);
 

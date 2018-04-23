@@ -9,6 +9,8 @@ void cse320_free(void *ptr);
 FILE* cse320_fopen(char *filename, char *mode);
 int cse320_fclose(FILE* stream);
 void cse320_clean();
+pid_t cse320_fork();
+void cse320_settimer(int N);
 
 typedef struct addr_in_use{
   void* addr;
